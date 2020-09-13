@@ -30,7 +30,7 @@ public class TestBaseTest {
         if(OSValue.contains("windows")){
             CHROME_PATH = Constants.WINDOW_CHROMEDRIVER_PATH;
         } else if(OSValue.contains("mac")){
-            CHROME_PATH = Constants.MAC_CHROMEDRIVER_PATH;
+            CHROME_PATH = testBasePage.getConfigValue("MAC_CHROMEDRIVER_PATH");
         } else if(OSValue.contains("lin")){
             CHROME_PATH = Constants.LINUX_CHROMEDRIVER_PATH;
         }
@@ -56,5 +56,10 @@ public class TestBaseTest {
         driver.get(testBasePage.getConfigValue(Constants.URL));
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+    }
+
+    public static void closeDriver(){
+            driver.close();
+            driver.quit();
     }
 }

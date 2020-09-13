@@ -3,70 +3,104 @@ package comm.gojeck.assigment;
 import comm.elementlocator.ConstantXpath;
 import comm.framework.Constants;
 import comm.framework.TestBasePage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class PaymentTransactionPage extends TestBasePage {
 
     private static WebDriver driver;
 
-    public PaymentTransactionPage(WebDriver inputDriver){
+    public PaymentTransactionPage(WebDriver inputDriver) {
         driver = inputDriver;
     }
-    protected static WebElement getCardNumberBox(){
+
+    protected static WebElement getCardNumberBox() {
         return findByXpath(ConstantXpath.CARD_NUMBER);
     }
-    protected static WebElement getExpiryTextBox(){
+
+    protected static WebElement getExpiryTextBox() {
         return findByXpath(ConstantXpath.EXPIRY_DATE);
     }
-    protected static WebElement getCvv(){
+
+    protected static WebElement getCvv() {
         return findByXpath(ConstantXpath.CVV);
     }
-    protected static WebElement getPayNow(){
+
+    protected static WebElement getPayNow() {
         return findByXpath(ConstantXpath.PAY_NOW_BUTTON);
     }
-    protected static WebElement getOtp(){
+
+    protected static WebElement getOtp() {
         return findByXpath(ConstantXpath.OTP);
     }
-    protected static WebElement getOtpOkButton(){
+
+    protected static WebElement getOtpOkButton() {
         return findByXpath(ConstantXpath.OTP_OK);
     }
-    protected static WebElement getSuccessHeader1(){
+
+    protected static WebElement getSuccessHeader1() {
         return findByXpath(ConstantXpath.SUCCESS_HEADER_1);
     }
-    protected static WebElement getSuccessHeader2(){
+
+    protected static WebElement getSuccessHeader2() {
         return findByXpath(ConstantXpath.SUCCESS_HEADER_2);
     }
+    protected static WebElement getFailureHeader(){
+        return findByXpath(ConstantXpath.FAILURE_HEADER);
+    }
+    protected static WebElement getFailureSubHeader1(){
+        return findByXpath(ConstantXpath.FAILURE_SUBHEADER1);
+    }
 
-    public void moveToPaymentsPage(){
+    protected static WebElement getFailureSubHeader2(){
+        return findByXpath(ConstantXpath.FAILURE_SUBHEADER2);
+    }
+
+
+
+    public void moveToPaymentsPage() {
         HomeToPaymentsPage homeToPaymentsPage = new HomeToPaymentsPage(driver);
         homeToPaymentsPage.verifyBuyNowButton();
         homeToPaymentsPage.verifyCheckOutButton();
         homeToPaymentsPage.verifyOrderSummaryContinueButton();
         homeToPaymentsPage.verifyCreditDebitOption();
     }
-    public void verifyPaymentSuccess(){
+
+    public static void makePayment(String cardNumber, String expiry, String cvv){
         Assert.assertTrue(getCardNumberBox().isDisplayed());
-        getCardNumberBox().sendKeys(Constants.POSITIVE_CARD);
+        getCardNumberBox().sendKeys(cardNumber);
         Assert.assertTrue(getExpiryTextBox().isDisplayed());
-        getExpiryTextBox().sendKeys(Constants.EXPIRY_DATE);
+        getExpiryTextBox().sendKeys(expiry);
         Assert.assertTrue(getCvv().isDisplayed());
-        getCvv().sendKeys(Constants.CVV);
+        getCvv().sendKeys(cvv);
         Assert.assertTrue(getPayNow().isDisplayed());
         getPayNow().click();
+    }
+    public void verifyPaymentSuccess() {
+        makePayment(Constants.POSITIVE_CARD,Constants.EXPIRY_DATE,Constants.CVV);
         changeTOIframeById(0);
         staticWait(10);
         getOtp().sendKeys(Constants.OTP);
         Assert.assertTrue(getOtpOkButton().isDisplayed());
         getOtpOkButton().click();
         explicitWaitByXpath(ConstantXpath.SUCCESS_HEADER_1);
-        Assert.assertEquals(getSuccessHeader1().getText(),Constants.SUCCESS_HEADER_1);
-        Assert.assertEquals(getSuccessHeader2().getText(),Constants.SUCCESS_HEADER_2);
+        Assert.assertEquals(getSuccessHeader1().getText(), Constants.SUCCESS_HEADER_1);
+        Assert.assertEquals(getSuccessHeader2().getText(), Constants.SUCCESS_HEADER_2);
     }
+
+    public void verifyPaymentFailure(){
+        makePayment(Constants.NEGATIVE_CARD,Constants.EXPIRY_DATE,Constants.CVV);
+        changeTOIframeById(0);
+        staticWait(10);
+        getOtp().sendKeys(Constants.OTP);
+        Assert.assertTrue(getOtpOkButton().isDisplayed());
+        getOtpOkButton().click();
+        changeFrameToParent();
+        explicitWaitByXpath(ConstantXpath.FAILURE_HEADER);
+        Assert.assertEquals(getFailureHeader().getText(), Constants.FAILURE_HEADER);
+        Assert.assertEquals(getFailureSubHeader1().getText(), Constants.FAILURE_SUBHEADER_1);
+        Assert.assertEquals(getFailureSubHeader2().getText(), Constants.FAILURE_SUBHEADER_2);
+    }
+
 }

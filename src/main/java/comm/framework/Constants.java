@@ -23,4 +23,7 @@ public class Constants {
 
     public static final String SUCCESS_HEADER_1 = "Thank you for your purchase.";
     public static final String SUCCESS_HEADER_2 = "Get a nice sleep.";
+    public static final String FAILURE_HEADER = "Transaction failed";
+    public static final String FAILURE_SUBHEADER_1 = "Your card got declined by the bank";
+    public static final String FAILURE_SUBHEADER_2 = "Would You like to retry?";
 }

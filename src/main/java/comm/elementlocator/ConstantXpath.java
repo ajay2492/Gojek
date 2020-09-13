@@ -15,4 +15,7 @@ public class ConstantXpath {
     public static final String OTP_OK = "//button[@name='ok']";
     public static final String SUCCESS_HEADER_1 = "//div[@class = 'notification-wrapper']//div//span[1]";
     public static final String SUCCESS_HEADER_2 = "//div[@class = 'notification-wrapper']//div//span[2]";
+    public static final String FAILURE_HEADER = "//div[@class='text-failed text-bold']//span";
+    public static final String FAILURE_SUBHEADER1 = "//div[@class='text-failed']//span";
+    public static final String FAILURE_SUBHEADER2 = "//div[@class='text-failed small']";
 }

@@ -147,5 +147,7 @@ public class TestBasePage {
             Logger.error(e.getMessage());
         }
     }
-
+    public static void changeFrameToParent(){
+        driver.switchTo().parentFrame();
+    }
 }
