@@ -11,8 +11,16 @@ public class Constants {
     public static final String BROWSER = "browser";
     public static final String URL = "url";
 
-    public static final int EXPLICIT_WAIT_TIME = 30;
+    public static final int EXPLICIT_WAIT_TIME = 60;
 
     public static final int SEAT_SELECTION = 2;
 
+    public static final String POSITIVE_CARD = "4811111111111114";
+    public static final String NEGATIVE_CARD = "4911111111111113";
+    public static final String EXPIRY_DATE = "0525";
+    public static final String CVV = "123";
+    public static final String OTP = "112233";
+
+    public static final String SUCCESS_HEADER_1 = "Thank you for your purchase.";
+    public static final String SUCCESS_HEADER_2 = "Get a nice sleep.";
 }

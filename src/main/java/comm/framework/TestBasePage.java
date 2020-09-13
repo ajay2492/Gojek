@@ -127,7 +127,25 @@ public class TestBasePage {
     public static void explicitWaitByXpath(String elementToVisible){
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementToVisible)));
     }
+    public static void explicitWaitByid(String iid){
+        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.id(iid)));
+    }
     public static void changeTOIframeById(String id){
         driver.switchTo().frame(id);
     }
+    public static void changeTOIframeById(int index){
+        driver.switchTo().frame(index);
+    }
+    public static void staticWait(int input){
+        try {
+            for(int i = 1; i <= input;i++){
+                Logger.info("Static wait time is " + i + "sec");
+            Thread.sleep(input*100);
+            }
+        }
+        catch (Exception e){
+            Logger.error(e.getMessage());
+        }
+    }
+
 }
