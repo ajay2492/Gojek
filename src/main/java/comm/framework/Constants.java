@@ -7,9 +7,15 @@ public class Constants {
     public static final String WINDOW_CHROMEDRIVER_PATH = "resources/windowdriver/chrome/chromedriver.exe";
     public static final String LINUX_CHROMEDRIVER_PATH = "resources/linuxchromedriver/chromedriver.exe";
     public static final String CHROME_KEY = "webdriver.chrome.driver";
+    public static final String FIREFOX_KEY = "webdriver.gecko.driver";
     public static final String CHROME = "chrome";
+    public static final String GOOGLE_CHROME = "google chrome";
     public static final String BROWSER = "browser";
     public static final String URL = "url";
+    public static final String MOZILLA = "mozilla";
+    public static final String FIREFOX = "firefox";
+    public static final String MOZILLA_FIREFOX = "mozilla firefox";
+    public static final String GECKO = "gecko";
 
     public static final int EXPLICIT_WAIT_TIME = 60;
 

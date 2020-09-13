@@ -1,9 +1,7 @@
 package comm.gojek;
 
 import comm.framework.TestBaseTest;
-import comm.gojeck.assigment.HomeToPaymentsPage;
-import comm.gojeck.assigment.PaymentTransactionPage;
-import org.openqa.selenium.WebDriver;
+import comm.gojek.assigment.PaymentTransactionPage;
 import org.testng.annotations.*;
 
 public class PaymentTransactionTest extends TestBaseTest {

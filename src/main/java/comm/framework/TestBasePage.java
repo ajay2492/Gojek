@@ -150,4 +150,7 @@ public class TestBasePage {
     public static void changeFrameToParent(){
         driver.switchTo().parentFrame();
     }
+    public static void changeFrameToDefault(){
+        driver.switchTo().defaultContent();
+    }
 }
